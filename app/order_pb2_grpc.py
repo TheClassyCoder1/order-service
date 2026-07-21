@@ -26,10 +26,7 @@ if _version_not_supported:
 
 
 class OrderServiceStub:
-    """Source-of-truth contract for the Order domain.
-    payment-service vendors a COPY of this file to build its gRPC client.
-    Keep the two in sync — drift breaks cross-repo calls.
-    """
+    """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
         """Constructor.
@@ -37,21 +34,19 @@ class OrderServiceStub:
         Args:
             channel: A grpc.Channel.
         """
-        self.GetOrder = channel.unary_unary(
-                '/order.OrderService/GetOrder',
+        self.FetchOrder = channel.unary_unary(
+                '/order.OrderService/FetchOrder',
                 request_serializer=order__pb2.GetOrderRequest.SerializeToString,
                 response_deserializer=order__pb2.GetOrderResponse.FromString,
                 _registered_method=True)
 
 
 class OrderServiceServicer:
-    """Source-of-truth contract for the Order domain.
-    payment-service vendors a COPY of this file to build its gRPC client.
-    Keep the two in sync — drift breaks cross-repo calls.
-    """
+    """Missing associated documentation comment in .proto file."""
 
-    def GetOrder(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+    def FetchOrder(self, request, context):
+        """Renamed from GetOrder for verb consistency with FetchInvoice/FetchRefund.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -59,8 +54,8 @@ class OrderServiceServicer:
 
 def add_OrderServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'GetOrder': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetOrder,
+            'FetchOrder': grpc.unary_unary_rpc_method_handler(
+                    servicer.FetchOrder,
                     request_deserializer=order__pb2.GetOrderRequest.FromString,
                     response_serializer=order__pb2.GetOrderResponse.SerializeToString,
             ),
@@ -73,13 +68,10 @@ def add_OrderServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class OrderService:
-    """Source-of-truth contract for the Order domain.
-    payment-service vendors a COPY of this file to build its gRPC client.
-    Keep the two in sync — drift breaks cross-repo calls.
-    """
+    """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def GetOrder(request,
+    def FetchOrder(request,
             target,
             options=(),
             channel_credentials=None,
@@ -92,7 +84,7 @@ class OrderService:
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/order.OrderService/GetOrder',
+            '/order.OrderService/FetchOrder',
             order__pb2.GetOrderRequest.SerializeToString,
             order__pb2.GetOrderResponse.FromString,
             options,
