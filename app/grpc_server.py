@@ -1,4 +1,4 @@
-"""gRPC server exposing OrderService.GetOrder.
+"""gRPC server exposing OrderService.FetchOrder.
 
 payment-service (Java) is the gRPC client of this server.
 Stubs (order_pb2, order_pb2_grpc) are generated from proto/order.proto.
@@ -13,15 +13,15 @@ from store import get_order
 
 
 class OrderServicer(order_pb2_grpc.OrderServiceServicer):
-    def GetOrder(self, request, context):
+    def FetchOrder(self, request, context):
         o = get_order(request.id)
         if o is None:
             context.abort(grpc.StatusCode.NOT_FOUND, f"order {request.id} not found")
         return order_pb2.GetOrderResponse(
             id=o["order_id"],
-            amount_minor=o["amount_cents"],
+            amount=o["amount_cents"] / 100.0,               # dollars, not cents
+            status=order_pb2.OrderStatus.Value(o["status"]),  # enum
             currency=o["currency"],
-            status=o["status"],
         )
 
 

@@ -24,17 +24,19 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0border.proto\x12\x05order\"\x1d\n\x0fGetOrderRequest\x12\n\n\x02id\x18\x01 \x01(\t\"V\n\x10GetOrderResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x0c\x61mount_minor\x18\x02 \x01(\x03\x12\x10\n\x08\x63urrency\x18\x03 \x01(\t\x12\x0e\n\x06status\x18\x04 \x01(\t2K\n\x0cOrderService\x12;\n\x08GetOrder\x12\x16.order.GetOrderRequest\x1a\x17.order.GetOrderResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0border.proto\x12\x05order\"\x1d\n\x0fGetOrderRequest\x12\n\n\x02id\x18\x01 \x01(\t\"d\n\x10GetOrderResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x01\x12\"\n\x06status\x18\x03 \x01(\x0e\x32\x12.order.OrderStatus\x12\x10\n\x08\x63urrency\x18\x05 \x01(\t*Q\n\x0bOrderStatus\x12\x1c\n\x18ORDER_STATUS_UNSPECIFIED\x10\x00\x12\x0b\n\x07\x43REATED\x10\x01\x12\x08\n\x04PAID\x10\x02\x12\r\n\tCANCELLED\x10\x03\x32M\n\x0cOrderService\x12=\n\nFetchOrder\x12\x16.order.GetOrderRequest\x1a\x17.order.GetOrderResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'order_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
+  _globals['_ORDERSTATUS']._serialized_start=155
+  _globals['_ORDERSTATUS']._serialized_end=236
   _globals['_GETORDERREQUEST']._serialized_start=22
   _globals['_GETORDERREQUEST']._serialized_end=51
   _globals['_GETORDERRESPONSE']._serialized_start=53
-  _globals['_GETORDERRESPONSE']._serialized_end=139
-  _globals['_ORDERSERVICE']._serialized_start=141
-  _globals['_ORDERSERVICE']._serialized_end=216
+  _globals['_GETORDERRESPONSE']._serialized_end=153
+  _globals['_ORDERSERVICE']._serialized_start=238
+  _globals['_ORDERSERVICE']._serialized_end=315
 # @@protoc_insertion_point(module_scope)
