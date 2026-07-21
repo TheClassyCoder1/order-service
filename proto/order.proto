@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package order;
+
+// Source-of-truth contract for the Order domain.
+// payment-service vendors a COPY of this file to build its gRPC client.
+// Keep the two in sync — drift breaks cross-repo calls.
+service OrderService {
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
+}
+
+message GetOrderRequest {
+  string order_id = 1;
+}
+
+message GetOrderResponse {
+  string order_id = 1;
+  int64 amount_cents = 2;   // minor units (cents)
+  string currency = 3;
+  string status = 4;        // CREATED | PAID | CANCELLED
+}
