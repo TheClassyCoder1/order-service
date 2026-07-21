@@ -21,8 +21,8 @@ def read_order(order_id: str):
         raise HTTPException(status_code=404, detail="order not found")
     # Response contract consumed by web-frontend:
     return {
-        "order_id": o["order_id"],
-        "amount_cents": o["amount_cents"],
+        "id": o["order_id"],
+        "amount_minor": o["amount_cents"],
         "currency": o["currency"],
         "status": o["status"],
     }
