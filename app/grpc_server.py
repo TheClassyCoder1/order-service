@@ -19,7 +19,7 @@ class OrderServicer(order_pb2_grpc.OrderServiceServicer):
             context.abort(grpc.StatusCode.NOT_FOUND, f"order {request.order_id} not found")
         return order_pb2.GetOrderResponse(
             order_id=o["order_id"],
-            amount_cents=o["amount_cents"],
+            amount_minor=o["amount_cents"],
             currency=o["currency"],
             status=order_pb2.OrderStatus.Value(o["status"]),
             created_at_ms=o["created_at_ms"],
