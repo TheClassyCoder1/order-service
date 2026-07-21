@@ -24,19 +24,19 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0border.proto\x12\x05order\"#\n\x0fGetOrderRequest\x12\x10\n\x08order_id\x18\x01 \x01(\t\"\x9c\x01\n\x10GetOrderResponse\x12\x10\n\x08order_id\x18\x01 \x01(\t\x12\x14\n\x0c\x61mount_cents\x18\x02 \x01(\x03\x12\x10\n\x08\x63urrency\x18\x03 \x01(\t\x12\"\n\x06status\x18\x04 \x01(\x0e\x32\x12.order.OrderStatus\x12\x15\n\rcreated_at_ms\x18\x05 \x01(\x03\x12\x13\n\x0b\x63ustomer_id\x18\x06 \x01(\x03*Q\n\x0bOrderStatus\x12\x1c\n\x18ORDER_STATUS_UNSPECIFIED\x10\x00\x12\x0b\n\x07\x43REATED\x10\x01\x12\x08\n\x04PAID\x10\x02\x12\r\n\tCANCELLED\x10\x03\x32K\n\x0cOrderService\x12;\n\x08GetOrder\x12\x16.order.GetOrderRequest\x1a\x17.order.GetOrderResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0border.proto\x12\x05order\"$\n\x0fGetOrderRequest\x12\x11\n\torder_ref\x18\x01 \x01(\t\"\x9d\x01\n\x10GetOrderResponse\x12\x11\n\torder_ref\x18\x01 \x01(\t\x12\x14\n\x0c\x61mount_cents\x18\x02 \x01(\x03\x12\x10\n\x08\x63urrency\x18\x03 \x01(\t\x12\"\n\x06status\x18\x04 \x01(\x0e\x32\x12.order.OrderStatus\x12\x15\n\rcreated_at_ms\x18\x05 \x01(\x03\x12\x13\n\x0b\x63ustomer_id\x18\x06 \x01(\x03*^\n\x0bOrderStatus\x12\x1c\n\x18ORDER_STATUS_UNSPECIFIED\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x0b\n\x07\x43REATED\x10\x02\x12\x08\n\x04PAID\x10\x03\x12\r\n\tCANCELLED\x10\x04\x32K\n\x0cOrderService\x12;\n\x08GetOrder\x12\x16.order.GetOrderRequest\x1a\x17.order.GetOrderResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'order_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_ORDERSTATUS']._serialized_start=218
-  _globals['_ORDERSTATUS']._serialized_end=299
+  _globals['_ORDERSTATUS']._serialized_start=220
+  _globals['_ORDERSTATUS']._serialized_end=314
   _globals['_GETORDERREQUEST']._serialized_start=22
-  _globals['_GETORDERREQUEST']._serialized_end=57
-  _globals['_GETORDERRESPONSE']._serialized_start=60
-  _globals['_GETORDERRESPONSE']._serialized_end=216
-  _globals['_ORDERSERVICE']._serialized_start=301
-  _globals['_ORDERSERVICE']._serialized_end=376
+  _globals['_GETORDERREQUEST']._serialized_end=58
+  _globals['_GETORDERRESPONSE']._serialized_start=61
+  _globals['_GETORDERRESPONSE']._serialized_end=218
+  _globals['_ORDERSERVICE']._serialized_start=316
+  _globals['_ORDERSERVICE']._serialized_end=391
 # @@protoc_insertion_point(module_scope)

@@ -7,23 +7,30 @@ import os
 import requests
 
 PAYMENT_BASE_URL = os.environ.get("PAYMENT_BASE_URL", "http://localhost:8080")
+MAX_RETRIES = 3
 
 
 def charge_order(order_id: str, amount_cents: int, currency: str, customer_id: int) -> dict:
-    """POST /charge on payment-service.
+    """POST /charge on payment-service, retrying on transient failures.
 
-    The JSON keys here MUST match payment-service's ChargeRequest fields
-    (orderId, amountCents, currency, customerId). Rename one side -> silent break.
+    The JSON keys here MUST match payment-service's ChargeRequest fields.
+    Rename one side -> silent break.
     """
-    resp = requests.post(
-        f"{PAYMENT_BASE_URL}/charge",
-        json={
-            "orderId": order_id,
-            "amountCents": amount_cents,
-            "currency": currency,
-            "customerId": customer_id,
-        },
-        timeout=5,
-    )
-    resp.raise_for_status()
-    return resp.json()  # {chargeId, status}
+    last_err = None
+    for attempt in range(MAX_RETRIES):
+        try:
+            resp = requests.post(
+                f"{PAYMENT_BASE_URL}/charge",
+                json={
+                    "orderRef": order_id,
+                    "amountCents": amount_cents,
+                    "currency": currency,
+                    "customerId": customer_id,
+                },
+                timeout=5,
+            )
+            resp.raise_for_status()
+            return resp.json()  # {chargeId, status}
+        except requests.RequestException as e:
+            last_err = e  # transient — retry
+    raise last_err

@@ -8,9 +8,10 @@ package order;
 
 enum OrderStatus {
   ORDER_STATUS_UNSPECIFIED = 0;
-  CREATED = 1;
-  PAID = 2;
-  CANCELLED = 3;
+  PENDING = 1;     // new: order created but awaiting inventory check
+  CREATED = 2;
+  PAID = 3;
+  CANCELLED = 4;
 }
 
 service OrderService {
@@ -18,14 +19,14 @@ service OrderService {
 }
 
 message GetOrderRequest {
-  string order_id = 1;
+  string order_ref = 1;
 }
 
 message GetOrderResponse {
-  string order_id = 1;
+  string order_ref = 1;
   int64 amount_cents = 2;      // minor units (cents)
   string currency = 3;
   OrderStatus status = 4;
   int64 created_at_ms = 5;     // epoch milliseconds
-  int64 customer_id = 6;       // 64-bit id, can exceed 2^53
+  int64 customer_id = 6;
 }

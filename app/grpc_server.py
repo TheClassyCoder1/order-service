@@ -14,15 +14,15 @@ from store import get_order
 
 class OrderServicer(order_pb2_grpc.OrderServiceServicer):
     def GetOrder(self, request, context):
-        o = get_order(request.order_id)
+        o = get_order(request.order_ref)
         if o is None:
-            context.abort(grpc.StatusCode.NOT_FOUND, f"order {request.order_id} not found")
+            context.abort(grpc.StatusCode.NOT_FOUND, f"order {request.order_ref} not found")
         return order_pb2.GetOrderResponse(
-            order_id=o["order_id"],
+            order_ref=o["order_id"],
             amount_cents=o["amount_cents"],
             currency=o["currency"],
             status=order_pb2.OrderStatus.Value(o["status"]),
-            created_at_ms=o["created_at_ms"],
+            created_at_ms=o["created_at_ms"] // 1000,   # now epoch seconds
             customer_id=o["customer_id"],
         )
 
