@@ -5,6 +5,14 @@ package order;
 // Source-of-truth contract for the Order domain.
 // payment-service vendors a COPY of this file to build its gRPC client.
 // Keep the two in sync — drift breaks cross-repo calls.
+
+enum OrderStatus {
+  ORDER_STATUS_UNSPECIFIED = 0;
+  CREATED = 1;
+  PAID = 2;
+  CANCELLED = 3;
+}
+
 service OrderService {
   rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
 }
@@ -15,7 +23,9 @@ message GetOrderRequest {
 
 message GetOrderResponse {
   string order_id = 1;
-  int64 amount_cents = 2;   // minor units (cents)
+  int64 amount_cents = 2;      // minor units (cents)
   string currency = 3;
-  string status = 4;        // CREATED | PAID | CANCELLED
+  OrderStatus status = 4;
+  int64 created_at_ms = 5;     // epoch milliseconds
+  int64 customer_id = 6;       // 64-bit id, can exceed 2^53
 }

@@ -4,7 +4,8 @@ Exposes GET /orders/{id} returning the order JSON, and
 POST /orders/{id}/pay which charges via payment-service.
 
 This is the Python -> React (HTTP) contract. The JSON field names
-(order_id, amount_cents, currency, status) are consumed by the frontend.
+(order_id, amount_cents, currency, status, created_at_ms, customer_id)
+are consumed by the frontend.
 """
 from fastapi import FastAPI, HTTPException
 
@@ -25,6 +26,8 @@ def read_order(order_id: str):
         "amount_cents": o["amount_cents"],
         "currency": o["currency"],
         "status": o["status"],
+        "created_at_ms": o["created_at_ms"],
+        "customer_id": o["customer_id"],
     }
 
 
@@ -33,6 +36,8 @@ def pay_order(order_id: str):
     o = get_order(order_id)
     if o is None:
         raise HTTPException(status_code=404, detail="order not found")
-    result = charge_order(o["order_id"], o["amount_cents"], o["currency"])
+    result = charge_order(
+        o["order_id"], o["amount_cents"], o["currency"], o["customer_id"]
+    )
     mark_paid(order_id)
     return {"order_id": order_id, "charge": result}

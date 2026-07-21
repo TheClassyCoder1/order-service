@@ -26,10 +26,7 @@ if _version_not_supported:
 
 
 class OrderServiceStub:
-    """Source-of-truth contract for the Order domain.
-    payment-service vendors a COPY of this file to build its gRPC client.
-    Keep the two in sync — drift breaks cross-repo calls.
-    """
+    """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
         """Constructor.
@@ -45,10 +42,7 @@ class OrderServiceStub:
 
 
 class OrderServiceServicer:
-    """Source-of-truth contract for the Order domain.
-    payment-service vendors a COPY of this file to build its gRPC client.
-    Keep the two in sync — drift breaks cross-repo calls.
-    """
+    """Missing associated documentation comment in .proto file."""
 
     def GetOrder(self, request, context):
         """Missing associated documentation comment in .proto file."""
@@ -73,10 +67,7 @@ def add_OrderServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class OrderService:
-    """Source-of-truth contract for the Order domain.
-    payment-service vendors a COPY of this file to build its gRPC client.
-    Keep the two in sync — drift breaks cross-repo calls.
-    """
+    """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def GetOrder(request,

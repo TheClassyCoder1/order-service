@@ -21,7 +21,9 @@ class OrderServicer(order_pb2_grpc.OrderServiceServicer):
             order_id=o["order_id"],
             amount_cents=o["amount_cents"],
             currency=o["currency"],
-            status=o["status"],
+            status=order_pb2.OrderStatus.Value(o["status"]),
+            created_at_ms=o["created_at_ms"],
+            customer_id=o["customer_id"],
         )
 
 
