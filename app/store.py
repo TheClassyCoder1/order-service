@@ -7,7 +7,7 @@ ORDERS = {
         "currency": "USD",
         "status": "CREATED",
         "created_at_ms": 1721563200000,   # epoch millis
-        "customer_id": 500001,
+        "customer_id": 7203344561288675329,  # snowflake id, > 2^53
     },
     "ord_1002": {
         "order_id": "ord_1002",
@@ -15,7 +15,7 @@ ORDERS = {
         "currency": "EUR",
         "status": "PAID",
         "created_at_ms": 1721476800000,
-        "customer_id": 500002,
+        "customer_id": 7203344561288675330,  # snowflake id, > 2^53
     },
 }
 

@@ -5,13 +5,13 @@ Owns the **Order** domain and the source-of-truth gRPC contract (`proto/order.pr
 ## Interfaces
 - **gRPC server** — `OrderService.GetOrder` (`app/grpc_server.py`, port 50051).
   Consumed by **payment-service** (Java), which vendors a copy of `order.proto`.
-- **HTTP read API** — `GET /orders/{id}`, `POST /orders/{id}/pay` (`app/http_api.py`, port 8000).
+- **HTTP read API** — `GET /api/orders/{ref}`, `POST /api/orders/{ref}/pay` (`app/http_api.py`, port 8000).
   Consumed by **web-frontend** (React).
 - **HTTP client** — calls **payment-service** `POST /charge` (`app/payment_client.py`).
 
 ## Cross-repo contract
-`proto/order.proto` fields (`order_id`, `amount_cents`, `currency`, `status`) and the
-`GET /orders/{id}` JSON shape are consumed by the other two repos. Renaming a field here
+`proto/order.proto` fields (`order_ref`, `amount_cents`, `currency`, `status`) and the
+`GET /api/orders/{ref}` JSON shape are consumed by the other two repos. Renaming a field here
 requires matching changes in payment-service (vendored proto + gRPC client) and web-frontend.
 
 ## Run
