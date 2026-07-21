@@ -7,7 +7,7 @@ ORDERS = {
         "currency": "USD",
         "status": "CREATED",
         "created_at_ms": 1721563200000,   # epoch millis
-        "customer_id": 9007199254740993,  # > 2^53, loses precision as a JS number
+        "customer_id": 500001,
     },
     "ord_1002": {
         "order_id": "ord_1002",
@@ -15,7 +15,7 @@ ORDERS = {
         "currency": "EUR",
         "status": "PAID",
         "created_at_ms": 1721476800000,
-        "customer_id": 42,
+        "customer_id": 500002,
     },
 }
 
