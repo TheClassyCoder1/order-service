@@ -23,7 +23,7 @@ message GetOrderRequest {
 
 message GetOrderResponse {
   string order_id = 1;
-  int64 amount_cents = 2;      // minor units (cents)
+  int64 amount_minor = 2;      // minor units (cents)
   string currency = 3;
   OrderStatus status = 4;
   int64 created_at_ms = 5;     // epoch milliseconds
